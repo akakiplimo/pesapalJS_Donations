@@ -1,0 +1,72 @@
+<div class="container" align="center">
+<form #f *ngIf="!checkSecurityKey()">
+  <mat-form-field>
+    <input matInput [(ngModel)]="key" name="key" type="password" placeholder="Enter Security Key">
+    <mat-hint> Enter Security Key to access Admin Panel</mat-hint>
+  </mat-form-field>
+</form>
+
+<mat-card *ngIf="checkSecurityKey()">
+  <mat-card-header>
+    <mat-card-title>Pesapal API Info:</mat-card-title>
+    <mat-card-subtitle>Your current API MetaData</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p><b>PesaPal Consumer Key:</b>{{pesapalConsumerKey || "N/A"}}</p>
+    <p><b>PesaPal Consumer Secret:</b>{{pesapalConsumerSecret || "N/A"}}</p>
+  </mat-card-content>
+</mat-card>
+
+<mat-divider></mat-divider>
+
+<mat-card *ngIf="checkSecurityKey()">
+  <mat-card-header>
+    <mat-card-title>PesaPal Merchant Information</mat-card-title>
+    <mat-card-subtitle>Update your Pesapal consumer key and consumer secret here</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+      <mat-form-field>
+        <input matInput placeholder="Pesapal Consumer Key" name="pesapalConsumerKeyUpdated" #cKey ngModel>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput placeholder="Pesapal Consumer Secret" name="pesapalConsumerSecretUpdated" #cSecret ngModel>
+      </mat-form-field>
+      <br>
+      <button mat-button type="submit" [disabled]=" cKey.value === '' || cSecret.value === '' ">UPDATE</button>
+    </form>
+  </mat-card-content>
+</mat-card>
+<!--<div *ngIf="userRecords">-->
+  <mat-card *ngIf="checkSecurityKey()">
+    <mat-card-header>
+      <mat-card-title>PesaPal Merchant Payment Information</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+    <table class="table table-trapped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Email</th>
+          <th>Phone No.</th>
+          <th>Type</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let element of userRecords ">
+          <td>{{element.transactionID}}</td>
+          <td>{{element.email}}</td>
+          <td>{{element.phoneNumber}}</td>
+          <td>{{element.type}}</td>
+          <td>{{element.amount}}</td>
+
+        </tr>
+      </tbody>
+    </table>
+    </mat-card-content>
+  </mat-card>
+<!--  </div>-->
+</div>
+

@@ -1,0 +1,47 @@
+<div class="container" align="center">
+<form class="donation-form" #donationForm="ngForm" (ngSubmit)="onSubmit(donationForm)">
+<mat-card>
+<mat-card-title>Donations Form</mat-card-title>
+<h3>Please fill in the following details...</h3>
+  <table class="full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="full-width">
+          <mat-label>First Name</mat-label>
+          <input matInput name="firstName" type="text" required ngModel>
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="full-width">
+          <mat-label>Last Name</mat-label>
+          <input matInput name="lastName" type="text" required ngModel>
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+  <p>
+    <mat-form-field class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput name="email" type="email" placeholder="e.g. 123@yoursite.com" required ngModel #email="ngModel">
+          <mat-error *ngIf="email.invalid">
+            Please Enter a valid email address
+          </mat-error>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+          <mat-label>Phone no.</mat-label>
+          <span matPrefix>+254 &nbsp;</span>
+          <input matInput name="phoneNo" type="tel" placeholder="555-555-555" required ngModel>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
+</mat-card>
+<mat-card>
+    <mat-form-field class="full-width">
+          <mat-label>Amount(How much would you like to donate?)</mat-label>
+          <input matInput name="amount" type="number" placeholder="KES. " required ngModel>
+    </mat-form-field>
+    <button mat-raised-button type="submit" color="primary" [disabled]="donationForm.invalid">Submit</button>
+</mat-card>
+
+</form>
+</div>
+
