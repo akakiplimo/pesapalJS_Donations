@@ -27,7 +27,7 @@
     "body-parser": "^1.19.0",
     "eva-icons": "^1.1.2",
     "express": "^4.17.1",
-    "mongoose": "^5.9.2",
+    "mongoose": "^5.13.15",
     "oauth-1.0a": "^2.2.6",
     "pesapaljs": "^1.0.0",
     "rxjs": "~6.5.4",
